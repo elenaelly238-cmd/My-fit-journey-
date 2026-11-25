@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5e7e4">
+<meta name="description" content="My Fit Journey – plan alimentar, hidratare, antrenamente și progres.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>My Fit Journey</title>
+<style>
+:root{--bg:#fbf5f1;--card:#fffdfa;--pink:#c98f9a;--pink2:#f2dfe0;--cream:#f4e9dc;--ink:#59464a;--muted:#947f80;--line:#efdfdc;--green:#829b83}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:850px;margin:auto;padding:16px}.hero{padding:23px;border-radius:25px;background:linear-gradient(130deg,#f5e2e2,#f4eadd);margin-bottom:16px}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#96777b}.brand{font-size:27px;font-weight:750;margin:7px 0}.sub{color:#806c6e;font-size:13px}.topline{display:flex;justify-content:space-between;align-items:center}.pill{background:#fff9;border-radius:99px;padding:8px 12px;font-size:12px}.goal{height:9px;background:#fff9;border-radius:20px;overflow:hidden;margin-top:9px}.goal span,.progress span{display:block;height:100%;background:var(--pink);border-radius:20px;width:0}.tabs{display:flex;gap:7px;overflow:auto;padding:2px 0 12px;scrollbar-width:none}.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:10px 14px;color:var(--ink);font-size:13px}.tabs button.active,.primary{background:var(--pink);border-color:var(--pink);color:white}.view{display:none}.view.active{display:block}.heading{font-size:21px;font-weight:750;margin:8px 0 4px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:16px;margin:10px 0}.stat{background:#fbefec;border-radius:15px;padding:13px}.stat b{display:block;font-size:23px;margin-top:4px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.progress{height:9px;background:#f1e7e3;border-radius:20px;overflow:hidden;margin:10px 0}.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--pink2);color:#79575c;font-weight:650;font-size:13px}.btn.primary{background:var(--pink);color:white}.btn.small{padding:8px 10px}.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.meal{border-left:3px solid #d7a6ae;padding-left:12px;margin:14px 0}.meal b{font-size:12px;color:var(--muted)}.meal div{margin-top:3px}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:13px 0}.day{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 2px;font-size:12px;color:var(--ink)}.day.active{background:var(--pink2);border-color:var(--pink)}.checkrow{display:flex;align-items:flex-start;gap:10px;margin:12px 0;font-size:14px}.checkrow input{accent-color:var(--pink);width:18px;height:18px;flex-shrink:0}.field{display:block;font-size:12px;color:var(--muted);margin:10px 0}.field input,.field select{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:11px;padding:11px;background:#fffdfa;color:var(--ink)}.recipe{padding:12px;background:#fbf2ef;border-radius:13px;margin:9px 0;font-size:13px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fffdf9ed;backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:center;z-index:5}.bottom-inner{display:flex;justify-content:space-around;gap:4px;width:100%;max-width:650px}.bottom button{background:none;border:0;color:var(--muted);font-size:11px;padding:5px 8px}.bottom button.active{color:var(--pink);font-weight:750}.bottom span{display:block;font-size:19px;margin-bottom:3px}.note{font-size:12px;color:var(--muted);line-height:1.5}.tag{font-size:11px;background:#f8eeeb;border-radius:99px;padding:5px 8px}.history{border-top:1px solid var(--line);padding:11px 0;font-size:13px}.hide{display:none!important}footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 0}
+@media(min-width:650px){.wrap{padding:24px}.grid.three{grid-template-columns:repeat(3,1fr)}.mealgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+ <div class="topline"><div><div class="eyebrow">Your wellness space</div><div class="brand">My Fit Journey 🌷</div></div><div class="pill">♡ personal plan</div></div>
+ <p class="sub">Small steps, big changes. One day at a time.</p>
+ <div class="row" style="font-size:12px;margin-top:17px"><span>Progres spre obiectiv</span><b id="goalLabel">56,1 → 52 kg</b></div><div class="goal"><span id="goalBar"></span></div>
+ <div class="sub" id="goalCaption" style="margin-top:7px">Punct de plecare: 56,1 kg</div>
+</header>
+<nav class="tabs" aria-label="Navigare">
+<button class="active" data-tab="home">♡ Acasă</button><button data-tab="food">🥗 Meniu</button><button data-tab="water">💧 Apă</button><button data-tab="workout">🏋️ Workout</button><button data-tab="progress">📈 Progres</button>
+</nav>
+<main>
+<section class="view active" id="home">
+ <div class="row"><div><div class="muted">Bine ai revenit!</div><div class="heading">Planul tău de azi</div></div><span class="tag" id="dateNow"></span></div>
+ <div class="grid three">
+  <div class="stat"><span class="muted">Greutate actuală</span><b id="homeWeight">56,1 kg</b></div><div class="stat"><span class="muted">Obiectiv</span><b>52 kg</b></div><div class="stat"><span class="muted">Apă azi</span><b id="homeWater">0 ml</b></div>
+ </div>
+ <div class="card"><div class="row"><b>Obiective zilnice</b><span class="muted" id="taskCount">0/5</span></div><div class="progress"><span id="taskBar"></span></div><div id="taskList"></div></div>
+ <div class="card"><div class="row"><b>Mesele de azi</b><button class="btn small" data-go="food">Vezi meniul</button></div><div id="todayMeals"></div></div>
+ <div class="card"><div class="row"><b>Hidratare 💧</b><button class="btn small" data-go="water">Adaugă apă</button></div><div class="progress"><span id="homeWaterBar"></span></div><div class="muted" id="homeWaterText">0 din 2.000 ml</div></div>
+ <div class="card"><b>Reminder blând</b><p class="note">Nu trebuie să fie perfect. Consecvența, mesele suficiente, somnul și recuperarea contează mai mult decât o zi bifată integral.</p></div>
+</section>
+<section class="view" id="food">
+ <div class="eyebrow">Nutriție · fără mic dejun</div><div class="heading">Meniul săptămânal 🥗</div><p class="muted">Dimineața: cafea. Apoi prânz la birou, gustare și cină acasă.</p>
+ <div class="days" id="foodDays"></div>
+ <div class="card"><div class="row"><b id="foodDayTitle">Luni</b><span class="tag">3 mese</span></div><div id="mealList" class="mealgrid"></div></div>
+ <div class="card"><b>👩‍🍳 Rețeta zilei</b><div id="recipeOfDay" class="recipe"></div></div>
+ <div class="card"><div class="row"><b>Meal prep de două ori pe săptămână</b><span class="tag">Plan simplu</span></div><div class="recipe"><b>Duminică · pentru luni–miercuri</b><p>Pui la air fryer, orez, chifteluțe de pui și cartofi. Păstrează la frigider porțiile pentru primele zile și congelează porțiile pentru mai târziu.</p></div><div class="recipe"><b>Miercuri seara · pentru joi–vineri</b><p>Paste cu pui și sos de roșii, curcan pentru wrap și pulpe dezosate. Răcește și depozitează prompt.</p></div><p class="note">Siguranță alimentară: răcește mâncarea prompt, păstreaz-o în recipiente închise la frigider și congelează porțiile care nu vor fi consumate în 3–4 zile. Reîncălzește bine.</p></div>
+ <div class="card"><div class="row"><b>🛒 Lista de cumpărături</b><button class="btn small" id="resetShopping">Resetează</button></div><div id="shoppingList"></div></div>
+</section>
+<section class="view" id="water">
+ <div class="eyebrow">Hidratare</div><div class="heading">Water tracker 💧</div><p class="muted">Un reper orientativ, ajustat după sete, activitate și temperatură.</p>
+ <div class="card" style="text-align:center;padding:25px 16px"><div style="font-size:42px">💧</div><div style="font-size:34px;font-weight:800;margin:8px" id="waterAmount">0 ml</div><div class="muted">Reper inițial: 2.000 ml / zi</div><div class="progress"><span id="waterBar"></span></div><div class="muted" id="waterPct">0% completat</div><div class="btnrow" style="justify-content:center"><button class="btn" data-water="150">+150 ml</button><button class="btn" data-water="250">+250 ml</button><button class="btn" data-water="500">+500 ml</button></div><button class="btn small" id="waterReset" style="margin-top:14px">Resetează ziua</button></div>
+ <p class="note">2 litri este doar un punct de pornire, nu o limită medicală sau o obligație rigidă. Necesarul de lichide diferă de la o persoană la alta.</p>
+</section>
+<section class="view" id="workout">
+ <div class="eyebrow">Mișcare</div><div class="heading">Workout planner 🏋️</div><p class="muted">Accent pe fesieri și abdomen, cu zile de recuperare.</p>
+ <div class="days" id="workDays"></div><div class="card"><div class="row"><b id="workDayTitle">Luni</b><span class="tag" id="workDuration">45–60 min</span></div><div id="workItems"></div><div class="progress"><span id="workBar"></span></div><div class="muted" id="workCount">0 exerciții bifate</div></div>
+ <p class="note">Începe cu încălzire, respectă pauzele și adaptează repetările nivelului tău. Oprește exercițiul dacă apare durere. Recuperarea este parte din antrenament.</p>
+</section>
+<section class="view" id="progress">
+ <div class="eyebrow">Evoluție</div><div class="heading">Progresul tău 📈</div><p class="muted">Urmărim greutatea, talia și șoldurile — fără să ne concentrăm exclusiv pe cântar.</p>
+ <div class="grid"><div class="stat"><span class="muted">Greutate inițială</span><b>56,1 kg</b></div><div class="stat"><span class="muted">Țintă</span><b>52 kg</b></div><div class="stat"><span class="muted">Talie inițială</span><b>67 cm</b></div><div class="stat"><span class="muted">Șolduri inițiale</span><b>94 cm</b></div></div>
+ <div class="card"><b>Adaugă măsurători</b><div class="grid"><label class="field">Data<input type="date" id="measureDate"></label><label class="field">Greutate (kg)<input type="number" step=".1" id="weightInput" placeholder="56.1"></label><label class="field">Talie (cm)<input type="number" step=".5" id="waistInput" placeholder="67"></label><label class="field">Șolduri (cm)<input type="number" step=".5" id="hipsInput" placeholder="94"></label></div><button class="btn primary" id="saveMeasure">Salvează măsurătorile</button><p class="muted" id="measureFeedback"></p></div>
+ <div class="card"><b>Istoric</b><div id="historyList"><p class="muted">Măsurătorile salvate vor apărea aici.</p></div></div>
+ <div class="card"><b>Datele tale</b><p class="note">Progresul și preferințele sunt salvate local pe acest dispozitiv, în browser. Pentru sincronizare între iPhone și laptop va fi nevoie de un cont și de o bază de date online. Poți exporta datele de mai jos.</p><div class="btnrow"><button class="btn" id="exportData">Exportă datele</button><button class="btn" id="clearData">Șterge datele salvate</button></div></div>
+</section>
+</main>
+<footer>Made with ♡ · My Fit Journey</footer>
+</div>
+<nav class="bottom"><div class="bottom-inner"><button class="active" data-tab="home"><span>♡</span>Acasă</button><button data-tab="food"><span>🥗</span>Meniu</button><button data-tab="water"><span>💧</span>Apă</button><button data-tab="workout"><span>🏋️</span>Workout</button><button data-tab="progress"><span>📈</span>Progres</button></div></nav>
+<script>
+(()=>{
+const $=id=>document.getElementById(id),KEY='my-fit-journey-v1';
+const days=['Lun','Mar','Mie','Joi','Vin','Sâm','Dum'],full=['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
+const menu=[
+['Pui la air fryer cu orez și salată','Iaurt grecesc și un măr','Omletă cu cașcaval, roșii și pâine'],
+['Chifteluțe de pui cu piure','Banană și iaurt','Salată cu ton, ou și pâine'],
+['Pui cu cartofi copți și salată','Brânză proaspătă și fruct','Lipie cu pui și legume'],
+['Paste cu pui și sos de roșii','Fruct și câteva nuci','Cartofi la air fryer cu brânză proaspătă'],
+['Wrap cu curcan și legume','Iaurt cu fructe','Pulpe dezosate la air fryer cu salată'],
+['Pește la air fryer cu cartofi','Fruct','Quesadilla cu pui și cașcaval'],
+['Friptură cu cartofi și salată','Iaurt','Sandviș cald cu șuncă și cașcaval']
+];
+const recipes=[
+['Pui cu orez','Taie pieptul de pui, adaugă boia, usturoi, sare, piper și puțin ulei. Gătește în air fryer la 180°C aproximativ 15–20 minute, până este bine pătruns. Servește cu orez fiert și salată.'],
+['Chifteluțe cu piure','Amestecă pui tocat cu ou, ceapă și condimente. Formează chifteluțe și gătește la 180°C aproximativ 12–16 minute, verificând să fie complet gătite. Servește cu piure.'],
+['Pui cu cartofi','Condimentează puiul și cartofii tăiați wedges. Gătește cartofii la 190°C aproximativ 18–25 minute, întorcând la jumătate; puiul separat, până este bine gătit.'],
+['Paste cu pui','Fierbe pastele. Gătește puiul în tigaie, adaugă sos de roșii, busuioc și puțin parmezan. Amestecă și porționează.'],
+['Wrap cu curcan','Umple o lipie cu curcan gătit, salată, roșii și sos de iaurt cu usturoi. Rulează și ambalează separat dacă îl pregătești dinainte.'],
+['Pește cu cartofi','Condimentează peștele cu lămâie, sare și piper. Gătește la 180°C, verificând des în funcție de grosime, până se desface ușor și este complet gătit.'],
+['Friptură cu cartofi','Gătește carnea preferată la temperatura și timpul potrivite tipului și grosimii. Servește cu cartofi copți și salată.']
+];
+const workout=[
+['Încălzire 8 min','Glute bridges · 3 × 15','Squats · 3 × 12','Donkey kicks · 3 × 12 / picior','Fire hydrants · 3 × 12 / picior','Abducții din culcat · 3 × 15','Stretching 8 min'],
+['Încălzire 5 min','Dead bug · 3 × 10','Plank · 3 × 20 sec','Bird dog · 3 × 10','Crunch controlat · 3 × 12','Reverse crunch · 2 × 10','Stretching 5 min'],
+['Plimbare lejeră 30 min','Mobilitate și stretching 15 min'],
+['Încălzire 8 min','Glute bridges · 3 × 15','Split squat asistat · 3 × 8 / picior','Donkey kicks · 3 × 12','Single leg glute bridge · 2 × 10','Fire hydrants · 3 × 12','Stretching 8 min'],
+['Încălzire 5 min','Plank · 3 × 20 sec','Dead bug · 3 × 10','Heel taps · 3 × 12','Bird dog · 3 × 10','Reverse crunch · 2 × 10','Plimbare lejeră 10 min'],
+['Încălzire 8 min','Squats · 3 × 12','Glute bridge hold · 3 × 25 sec','Donkey kicks · 3 × 12','Frog pumps · 3 × 15','Stretching 10 min'],
+['Recuperare activă','Plimbare lejeră 20–30 min','Stretching 10 min']
+];
+const shopping=['Ouă','Piept de pui','Carne tocată de pui','Curcan','Pește','Iaurt grecesc','Brânză proaspătă','Cașcaval','Orez','Paste','Cartofi','Lipii','Pâine','Ovăz','Mere','Banane','Roșii','Castraveți','Salată','Sos de roșii'];
+const todayIndex=()=>{let d=new Date().getDay();return d===0?6:d-1};
+let state={water:0,waterDate:new Date().toDateString(),checks:{},measures:[],shopping:{},foodDay:todayIndex(),workDay:todayIndex(),exerciseChecks:{}};
+try{let saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved)state={...state,...saved}}catch(e){}
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function show(tab){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===tab));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.tab)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
+if(state.waterDate!==new Date().toDateString()){state.water=0;state.waterDate=new Date().toDateString();save()}
+$('dateNow').textContent=new Date().toLocaleDateString('ro-RO',{day:'numeric',month:'short'});
+const taskNames=['Am respectat mesele planificate','Am băut apă pe parcursul zilei','Am făcut mișcare sau plimbare','Am inclus surse de proteine','Am avut grijă de odihnă'];
+function renderTasks(){$('taskList').innerHTML=taskNames.map((t,i)=>`<label class="checkrow"><input type="checkbox" data-task="${i}" ${state.checks[i]?'checked':''}><span>${t}</span></label>`).join('');$('taskList').querySelectorAll('[data-task]').forEach(c=>c.addEventListener('change',()=>{state.checks[c.dataset.task]=c.checked;save();taskStats()}));taskStats()}
+function taskStats(){let n=taskNames.filter((_,i)=>state.checks[i]).length;$('taskCount').textContent=n+'/5';$('taskBar').style.width=n*20+'%'}
+function renderWater(){let p=Math.min(100,state.water/2000*100);$('waterAmount').textContent=state.water.toLocaleString('ro-RO')+' ml';$('waterPct').textContent=Math.round(p)+'% completat';$('waterBar').style.width=p+'%';$('homeWater').textContent=state.water.toLocaleString('ro-RO')+' ml';$('homeWaterBar').style.width=p+'%';$('homeWaterText').textContent=state.water.toLocaleString('ro-RO')+' din 2.000 ml';save()}
+document.querySelectorAll('[data-water]').forEach(b=>b.addEventListener('click',()=>{state.water+=Number(b.dataset.water);renderWater()}));
+$('waterReset').addEventListener('click',()=>{state.water=0;renderWater()});
+function dayButtons(id,selected,fn){$(id).innerHTML=days.map((d,i)=>`<button class="day ${i===selected?'active':''}" data-day="${i}">${d}</button>`).join('');$(id).querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>fn(Number(b.dataset.day))))}
+function renderFood(){dayButtons('foodDays',state.foodDay,i=>{state.foodDay=i;renderFood()});let d=state.foodDay;$('foodDayTitle').textContent=full[d];$('mealList').innerHTML=['Prânz · birou','Gustare','Cină · acasă'].map((t,i)=>`<div class="meal"><b>${t}</b><div>${menu[d][i]}</div></div>`).join('');$('todayMeals').innerHTML=['Prânz','Gustare','Cină'].map((t,i)=>`<div class="meal"><b>${t}</b><div>${menu[todayIndex()][i]}</div></div>`).join('');$('recipeOfDay').innerHTML='<b>'+recipes[d][0]+'</b><p>'+recipes[d][1]+'</p>';renderShopping()}
+function renderShopping(){$('shoppingList').innerHTML=shopping.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-shop="${i}" ${state.shopping[i]?'checked':''}><span>${x}</span></label>`).join('');$('shoppingList').querySelectorAll('[data-shop]').forEach(c=>c.addEventListener('change',()=>{state.shopping[c.dataset.shop]=c.checked;save()}))}
+$('resetShopping').addEventListener('click',()=>{state.shopping={};save();renderShopping()});
+function renderWorkout(){dayButtons('workDays',state.workDay,i=>{state.workDay=i;renderWorkout()});let d=state.workDay;$('workDayTitle').textContent=full[d];$('workDuration').textContent=(d===2||d===6)?'Recuperare':'aprox. 45–60 min';$('workItems').innerHTML=workout[d].map((x,i)=>{let k=d+'-'+i;return `<label class="checkrow"><input type="checkbox" data-ex="${k}" ${state.exerciseChecks[k]?'checked':''}><span>${x}</span></label>`}).join('');$('workItems').querySelectorAll('[data-ex]').forEach(c=>c.addEventListener('change',()=>{state.exerciseChecks[c.dataset.ex]=c.checked;save();workStats()}));workStats()}
+function workStats(){let n=workout[state.workDay].filter((_,i)=>state.exerciseChecks[state.workDay+'-'+i]).length,total=workout[state.workDay].length;$('workCount').textContent=n+' / '+total+' activități bifate';$('workBar').style.width=(n/total*100)+'%'}
+function renderHistory(){$('historyList').innerHTML=state.measures.length?state.measures.slice().reverse().map(m=>`<div class="history"><b>${m.date}</b><div class="muted">Greutate: ${m.weight||'—'} kg · Talie: ${m.waist||'—'} cm · Șolduri: ${m.hips||'—'} cm</div></div>`).join(''):'<p class="muted">Măsurătorile salvate vor apărea aici.</p>';let latest=state.measures[state.measures.length-1];if(latest&&latest.weight){$('homeWeight').textContent=latest.weight+' kg';let pct=Math.max(0,Math.min(100,(56.1-Number(latest.weight))/(56.1-52)*100));$('goalBar').style.width=pct+'%';$('goalCaption').textContent='Ultima măsurătoare: '+latest.weight+' kg · '+Math.round(pct)+'% din drumul spre obiectiv'}}
+$('measureDate').value=new Date().toISOString().slice(0,10);
+$('saveMeasure').addEventListener('click',()=>{let weight=$('weightInput').value,waist=$('waistInput').value,hips=$('hipsInput').value;if(!weight&&!waist&&!hips){$('measureFeedback').textContent='Completează cel puțin o valoare.';return}state.measures.push({date:$('measureDate').value,weight,waist,hips});save();renderHistory();$('measureFeedback').textContent='Măsurătoarea a fost salvată pe acest dispozitiv.';$('weightInput').value='';$('waistInput').value='';$('hipsInput').value=''});
+$('exportData').addEventListener('click',()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-fit-journey-data.json';a.click();URL.revokeObjectURL(a.href)});
+$('clearData').addEventListener('click',()=>{if(confirm('Sigur vrei să ștergi toate datele salvate pe acest dispozitiv?')){localStorage.removeItem(KEY);location.reload()}});
+renderTasks();renderWater();renderFood();renderWorkout();renderHistory();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+</body></html>
